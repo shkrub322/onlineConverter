@@ -32,7 +32,7 @@ public class OnlineConverterApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-//		fillingTable.save();
+		fillingTable.save();
 		System.out.println("Success!!!");
 	}
 

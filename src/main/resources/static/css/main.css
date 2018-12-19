@@ -1,12 +1,27 @@
-@media screen and (max-width: 640px) {
-    table {
-        overflow-x: auto;
-        display: block;
-    }
+.nav{
+    background-color: #4a707a;
 }
 
-.scroll{
-    overflow-x: auto;
+.background{
+    background-image: url("/images/bricks-1044659_1920.jpg");
+    min-height: 100vh;
+    max-height: auto;
 }
+
+.content{
+    margin-top: 72px;
+    background-color: #ddddda;
+    color: #4a707a;
+    border-right: 1px solid #205660;
+    border-bottom: 1px solid #205660;
+    border-left: 1px solid #205660;
+    overflow-x: scroll;
+}
+
+.table-head{
+    background-color: #7697a0;
+    color: white;
+}
+
 
 

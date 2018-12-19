@@ -35,12 +35,12 @@ Vue.component("bank-row", {
     template:
         '<div>' +
         '<tr>' +
-        '<td style="cursor: pointer" @click="show">{{bank.name}}</td>' +
+        '<td style="cursor: pointer; padding: 5px" @click="show">{{bank.name}}</td>' +
         '</tr>' +
         '<tr v-if="flag">' +
-        '<div class="scroll">' +
+        '<div>' +
         '<table class="table table-hover table-condensed">' +
-        '<thead class="thead-dark">' +
+        '<thead class="table-head">' +
         '<tr>' +
         '<th>Отделение <br> {{bank.name}}</th>' +
         '<th>USD <br>(покупка)</th>' +
@@ -108,7 +108,6 @@ Vue.component("select-regions", {
         };
     },
     template:
-        '<div class="container">' +
         '<div class="row">' +
         '<main class="col-12">' +
         '<select class="form-control form-control-lg" v-model="regionId">' +
@@ -119,19 +118,13 @@ Vue.component("select-regions", {
         '<option selected value="">All</option> ' +
         '<option-city v-for="city in cities" :key="city.id" :city="city"/>' +
         '</select>' + '<br>' +
-        '<table class="table table-hover">' +
-        '<thead>' +
-        '<tr>' +
-        '<th>Банк</th>' +
-        '</tr>' +
-        '</thead>' +
+        '<table class="table-hover">' +
         '<tbody>' +
         '<bank-row :departments="departments" :rates="rates" :cityId="cityId" ' +
         ':regionId="regionId" v-for="bank in banks" :key="bank.id" :bank="bank"/>' +
         '</tbody>' +
         '</table>' +
         '</main> ' +
-        '</div>' +
         '</div>',
     created: function () {
         reqReg.get().then(result => result.json().then(data => data.forEach(region => this.regions.push(region))));
@@ -220,8 +213,7 @@ Vue.component("rate-form", {
     template:
         '<div class="container">' +
         '<div class="row">' +
-        '<main class="col-12">' +
-        '<select v-model="from" class="form-control col-1">' +
+        '<select v-model="from" class="form-control col-3">' +
         '<option>USD</option>' +
         '<option>EUR</option>' +
         '<option>BYN</option>' +
@@ -238,7 +230,7 @@ Vue.component("rate-form", {
         '</select>' +
         '</div>' +
         '<div class="form-row" style="margin-top: 20px">' +
-        '<select v-model="to" class="form-control col-1">' +
+        '<select v-model="to" class="form-control col-3">' +
         '<option v-for="rate in rates">{{rate}}</option>' +
         '</select>' +
         '<p style="margin-left: 50px" class="col-6 h3">{{Math.round(value*profit*100) / 100}}</p>' +
@@ -248,8 +240,6 @@ Vue.component("rate-form", {
         '</div> ' +
         '<rate-table :vals="vals" v-if="show"></rate-table>' +
         '<div class="form-row">' +
-        '</main> ' +
-        '</div>' +
         '</div>',
     watch: {
         from: function () {
@@ -342,7 +332,7 @@ const Home = {
             rates: []
         }
     },
-    template: '<div class="container"><select-regions :regions="regions" :cities="cities" :banks="banks" ' +
+    template: '<div class="container content"><select-regions :regions="regions" :cities="cities" :banks="banks" ' +
         ' :departments="departments" :rates="rates"/></div>'
 };
 
@@ -354,7 +344,7 @@ const Converter = {
             cities: [],
         }
     },
-    template: '<div class="container"><rate-form :vals="vals" :regions="regions" :cities="cities"/></div>'
+    template: '<div class="container content"><rate-form :vals="vals" :regions="regions" :cities="cities"/></div>'
 };
 
 const routes = [
@@ -371,7 +361,7 @@ const router = new VueRouter({
 Vue.component('nav-bar',{
     template:
         '<header>' +
-        '<nav class="navbar navbar-dark bg-dark">\n' +
+        '<nav class="navbar fixed-top navbar-dark nav" role="navigation">\n' +
         '        <h1 style="color: white">Online Converter</h1>\n' +
         '        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">\n' +
         '            <span class="navbar-toggler-icon"></span>\n' +
@@ -396,7 +386,7 @@ new Vue({
     template:
         '<div>' +
         '<nav-bar></nav-bar>' +
-        '<section><router-view></router-view></section>' +
+        '<section class="background"><router-view></router-view></section>' +
         '</div>'
 });
 
