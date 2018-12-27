@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface RegionService {
     List<Region> getAll();
-    void updateAll(List<Region> newRegions);
+
+    void save(List<Region> regions);
 }

@@ -14,7 +14,7 @@ public class City {
     @JoinColumn(name = "region_id")
     private Region region;
 
-    public City(){
+    public City() {
 
     }
 
@@ -47,8 +47,20 @@ public class City {
         this.region = region;
     }
 
-    @Override
     public boolean equals(Object object) {
-        return this.getName().equals(object);
+        City city = null;
+        if (object instanceof City) {
+            city = (City) object;
+        }
+
+        if (object instanceof String) {
+            return name.equals(object);
+        }
+
+        if (city != null) {
+            return name.equals(city.name);
+        }
+
+        return false;
     }
 }

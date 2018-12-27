@@ -1,6 +1,3 @@
-var messageApi = Vue.resource("/message{/id}");
-
-
 Vue.component('message-form', {
     props: ['messages', 'messageAttr'],
     data: function(){

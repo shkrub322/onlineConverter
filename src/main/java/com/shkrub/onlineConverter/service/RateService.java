@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface RateService {
     List<Rate> getAllByDepartmentId(Long id);
-    List<Rate> getProfitableValue(String from, String to);
-    List<Rate> getProfitableValueByRegionId(String from, String to, Long regionId);
-    List<Rate> getProfitableValueByCityId(String from, String to, Long cityId);
+
+    Double getProfitableValue(String from, String to);
+
+    Double getProfitableValueByCityId(String from, String to, Long id);
+
     void updateAll(List<Rate> newRates);
+
+    void save(List<Rate> rates);
 }

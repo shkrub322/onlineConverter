@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface CityService {
     List<City> getByRegionId(Long id);
-    void updateAll(List<City> newCities);
+
+    List<City> getMain();
+
+    void save(List<City> cities);
 }

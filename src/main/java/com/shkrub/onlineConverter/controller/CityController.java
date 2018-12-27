@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 @RestController
 @RequestMapping("cities")
 public class CityController {
@@ -15,8 +16,13 @@ public class CityController {
         this.cityService = cityService;
     }
 
+    @GetMapping("main")
+    public List<City> getMainCities() {
+        return cityService.getMain();
+    }
+
     @GetMapping("{id}")
-    public List<City> getAllCitiesByRegion(@PathVariable(name = "id") Long id){
+    public List<City> getAllCitiesByRegion(@PathVariable(name = "id") Long id) {
         return cityService.getByRegionId(id);
     }
 }

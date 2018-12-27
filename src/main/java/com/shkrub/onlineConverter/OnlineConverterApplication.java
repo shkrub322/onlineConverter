@@ -21,10 +21,8 @@ public class OnlineConverterApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 //		try {
 //			Runtime.getRuntime().exec("src/main/java/com/shkrub/onlineConverter/parser/script/start.sh");
-//			TimeUnit.MINUTES.sleep(3);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} catch (InterruptedException e) {
+//			TimeUnit.MINUTES.sleep(2);
+//		} catch (IOException | InterruptedException e) {
 //			e.printStackTrace();
 //		}
 		SpringApplication.run(OnlineConverterApplication.class, args);
@@ -32,7 +30,7 @@ public class OnlineConverterApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		fillingTable.save();
+//		fillingTable.save();
 		System.out.println("Success!!!");
 	}
 

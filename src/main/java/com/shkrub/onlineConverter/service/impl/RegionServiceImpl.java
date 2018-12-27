@@ -6,6 +6,8 @@ import com.shkrub.onlineConverter.service.RegionService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -19,14 +21,13 @@ public class RegionServiceImpl implements RegionService {
     @Override
     @Transactional
     public List<Region> getAll() {
-        List<Region> regions = (List<Region>) regionRepository.findAll();
-        return regions;
+        return (List<Region>) regionRepository.findAll();
     }
 
     @Override
-    public void updateAll(List<Region> newRegions) {
-        for(Region region: newRegions){
-            regionRepository.save(region);
-        }
+    @Transactional
+    public void save(List<Region> regions) {
+        regionRepository.deleteAll();
+        regionRepository.saveAll(regions);
     }
 }

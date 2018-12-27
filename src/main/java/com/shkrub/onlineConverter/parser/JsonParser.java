@@ -8,10 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class JsonParser {
     private static List<Region> regions;
@@ -95,6 +92,7 @@ public class JsonParser {
                     banks.add(new Bank(bankName));
                 }
             }
+            Collections.sort(banks);
 
             for (JsonNode jsonNode : jsonNodeData){
                 String cityName = jsonNode.get("city").asText();

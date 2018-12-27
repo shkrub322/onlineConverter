@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "department")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,4 +69,17 @@ public class Department {
         this.bank = bank;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Department department = null;
+        if (obj instanceof Department) {
+            department = (Department) obj;
+        }
+
+        if (department != null) {
+            return name.equals(department.name) && address.equals(department.address);
+        }
+
+        return false;
+    }
 }

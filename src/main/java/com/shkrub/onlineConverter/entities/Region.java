@@ -11,7 +11,7 @@ public class Region {
 
     private String name;
 
-    public  Region() {
+    public Region() {
     }
 
     public Region(String name) {
@@ -35,6 +35,19 @@ public class Region {
     }
 
     public boolean equals(Object object) {
-        return this.getName().equals(object);
+        Region region = null;
+        if (object instanceof Region) {
+            region = (Region) object;
+        }
+
+        if (object instanceof String) {
+            return name.equals(object);
+        }
+
+        if (region != null) {
+            return name.equals(region.name);
+        }
+
+        return false;
     }
 }

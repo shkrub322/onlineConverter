@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "bank")
-public class Bank implements Comparable<Bank>{
+public class Bank implements Comparable<Bank> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,9 +33,21 @@ public class Bank implements Comparable<Bank>{
         this.name = name;
     }
 
-    @Override
     public boolean equals(Object object) {
-        return this.getName().equals(object);
+        Bank bank = null;
+        if (object instanceof Bank) {
+            bank = (Bank) object;
+        }
+
+        if (object instanceof String) {
+            return name.equals(object);
+        }
+
+        if (bank != null) {
+            return name.equals(bank.name);
+        }
+
+        return false;
     }
 
     @Override

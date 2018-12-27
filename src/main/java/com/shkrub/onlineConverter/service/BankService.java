@@ -7,7 +7,8 @@ import java.util.Set;
 
 public interface BankService {
     List<Bank> getAll();
+
     Set<Bank> getAllByCityId(Long id);
-    Set<Bank> getAllByRegionId(Long id);
-    void updateAll(List<Bank> newBanks);
+
+    void save(List<Bank> banks);
 }

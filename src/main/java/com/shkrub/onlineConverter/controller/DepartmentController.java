@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 @RestController
 @RequestMapping("departments")
-public class DepartmentController{
+public class DepartmentController {
     private final DepartmentService departmentService;
 
     public DepartmentController(DepartmentService departmentService) {
@@ -17,18 +18,12 @@ public class DepartmentController{
 
     @GetMapping("/city")
     public List<Department> getAllDepartmentsByBankAndCity(@RequestParam(name = "bank") Long bankId,
-                                                    @RequestParam(name = "city") Long cityId){
+                                                           @RequestParam(name = "city") Long cityId) {
         return departmentService.getAllByBankAndCityId(bankId, cityId);
     }
 
-    @GetMapping("/region")
-    public List<Department> getAllDepartmentsByBankAndRegion(@RequestParam(name = "bank") Long bankId,
-                                                      @RequestParam(name = "region") Long regionId){
-        return departmentService.getAllByBankAndRegionId(bankId, regionId);
-    }
-
     @GetMapping()
-    public List<Department> getAllDepartmentsByBank(@RequestParam(name = "bank") Long id){
+    public List<Department> getAllDepartmentsByBank(@RequestParam(name = "bank") Long id) {
         return departmentService.getAllByBank(id);
     }
 }

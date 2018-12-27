@@ -7,7 +7,9 @@ import com.shkrub.onlineConverter.repositories.DepartmentRepository;
 import com.shkrub.onlineConverter.service.BankService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class BankServiceImpl implements BankService {
@@ -20,11 +22,13 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
+    @Transactional
     public List<Bank> getAll() {
         return (List<Bank>) bankRepository.findAll();
     }
 
     @Override
+    @Transactional
     public Set<Bank> getAllByCityId(Long id) {
         List<Department> departments = (List<Department>) departmentRepository.findAll();
         Set<Bank> banks = new TreeSet<>();
@@ -37,21 +41,9 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Set<Bank> getAllByRegionId(Long id) {
-        List<Department> departments = (List<Department>) departmentRepository.findAll();
-        Set<Bank> banks= new TreeSet<>();
-        for (Department department: departments){
-            if (department.getCity().getRegion().getId().equals(id)){
-                banks.add(department.getBank());
-            }
-        }
-        return banks;
-    }
-
-    @Override
-    public void updateAll(List<Bank> newBanks) {
-        for(Bank bank : newBanks){
-            bankRepository.save(bank);
-        }
+    @Transactional
+    public void save(List<Bank> banks) {
+        bankRepository.deleteAll();
+        bankRepository.saveAll(banks);
     }
 }
